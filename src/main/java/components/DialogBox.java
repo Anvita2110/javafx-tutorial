@@ -1,0 +1,18 @@
+package components;
+
+import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class DialogBox extends HBox {
+
+    private Label text;
+    private ImageView displayPicture;
+
+    public DialogBox(String s, Image i) {
+        text = new Label(s);
+        displayPicture = new ImageView(i);
+        this.getChildren().addAll(text, displayPicture);
+    }
+}
