@@ -5,6 +5,18 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private static final String DEFAULT_FILE_PATH = "duke/example.txt";
+
+    // Existing constructor
+    public Main(String filePath) {
+        // ...
+    }
+
+    // Overloaded constructor
+    public Main() {
+        this(DEFAULT_FILE_PATH);
+    }
+
     @Override
     public void start(Stage stage) {
         Label helloWorld = new Label("Hello World!"); // Creating a new Label control
