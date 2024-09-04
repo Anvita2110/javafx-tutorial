@@ -22,6 +22,17 @@ public class Main extends Application {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/man.png"));
     private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/customer-service.png"));
 
+
+    /*
+      Creates a dialog box containing user input, and appends it to
+      the dialog container.
+      Clears the user input after processing.
+    */
+    public void handleUserInput() {
+        dialogContainer.getChildren().addAll(new DialogBox(userInput.getText(), userImage));
+        userInput.clear();
+    }
+
     @Override
     public void start(Stage stage) {
         //Setting up required components
@@ -33,8 +44,16 @@ public class Main extends Application {
         userInput = new TextField();
         sendButton = new Button("Send");
 
-        DialogBox dialogBox = new DialogBox("Hello!", userImage);
-        dialogContainer.getChildren().addAll(dialogBox);
+//        DialogBox dialogBox = new DialogBox("Hello!", userImage);
+//        dialogContainer.getChildren().addAll(dialogBox);
+
+        //Handling user input
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
@@ -68,6 +87,9 @@ public class Main extends Application {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+
+        //Scroll down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         stage.setScene(scene);
         stage.show();
