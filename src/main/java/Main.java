@@ -22,6 +22,7 @@ public class Main extends Application {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/man.png"));
     private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/customer-service.png"));
 
+    private Duke duke = new Duke();
 
     /*
       Creates a dialog box containing user input, and appends it to
@@ -29,7 +30,15 @@ public class Main extends Application {
       Clears the user input after processing.
     */
     public void handleUserInput() {
-        dialogContainer.getChildren().addAll(new DialogBox(userInput.getText(), userImage));
+        // dialogContainer.getChildren().addAll(new DialogBox(userInput.getText(), userImage));
+        // userInput.clear();
+
+        String userText = userInput.getText();
+        String dukeText = duke.getResponse(userInput.getText());
+        dialogContainer.getChildren().addAll(
+                new DialogBox(userText, userImage),
+                new DialogBox(dukeText, dukeImage)
+        );
         userInput.clear();
     }
 
