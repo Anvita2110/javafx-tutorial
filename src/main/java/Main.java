@@ -1,12 +1,15 @@
+import components.DialogBox;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 
 public class Main extends Application {
 
@@ -15,6 +18,9 @@ public class Main extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/man.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/customer-service.png"));
 
     @Override
     public void start(Stage stage) {
@@ -26,6 +32,9 @@ public class Main extends Application {
 
         userInput = new TextField();
         sendButton = new Button("Send");
+
+        DialogBox dialogBox = new DialogBox("Hello!", userImage);
+        dialogContainer.getChildren().addAll(dialogBox);
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
